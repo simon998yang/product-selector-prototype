@@ -1,0 +1,22 @@
+{
+  "name": "to-include-bootstrap-sass",
+  "version": "0.0.1",
+  "description": "to include bootstrap sass",
+  "main": "assets/javascripts/bootstrap.js",
+  "keywords": [
+    "bootstrap",
+    "sass",
+    "css"
+  ],
+  "contributors": [
+    "Simon Yang"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "bootstrap-slider": "^7.0.0",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-sass": "^2.2.0"
+  },
+  "dependencies": {}
+}

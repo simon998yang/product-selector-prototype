@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Product Selector Prototype</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.1/jquery.min.js" />
+<link href="../static/css/app.css" th:href="@{/css/app.css}" rel="stylesheet" />
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="../static/js/app.js" th:src="@{/js/app.js}" />
+<link href="../static/css/bootstrap-slider.min.css" th:href="@{/css/bootstrap-slider.min.css}" rel="stylesheet" />
+<script src="../static/js/bootstrap-slider.min" th:src="@{/js/bootstrap-slider.min.js}" />
+</head>
+<body>
+	<div class="filter-button-container">
+		<div class="product-count-wrap ">
+			<strong id="productCount" th:text="${products.size()}">11</strong> products
+		</div>
+		<button data-toggle="collapse" data-target="#filterDiv" class="filter-button">Filter</button>
+	</div>
+
+	<div id="filterDiv" class="filter-options collapse">
+		<div class="container">
+			<div th:each="filterGroup : ${advisorConfig.filterGroups}" class="col-sm-4">
+				<div th:each="filter: ${filterGroup.filters}" class="checkbox">
+					<label th:if='${"checkbox".equals(filter.getMetaData("controlType").toLowerCase())}'> <input
+						th:type='${filter.getMetaData("controlType")}'
+						th:value="${webUtil.getIDsAsString(filter.getCandidateProducts(category,null,null))}"
+						onclick='filter(this.id,this.checked,this.value)' th:id="${filter.id}" th:text='${filter.getMetaData("label")}' /></label>
+
+					<label th:if='${"range".equals(filter.getMetaData("controlType").toLowerCase())}'> <span
+						th:text="${filter.getMetaData('min-label')}">€ 10</span> <input id="ex2" type="text" class="range" value=""
+						th:attr="data-slider-step=${filter.getMetaData('slide-step')},data-slider-min=${filter.getMetaData('min')},data-slider-max=${filter.getMetaData('max')},data-slider-value=${'['+ filter.getMetaData('init-min') + ',' + filter.getMetaData('init-max')+']'}"
+						th:id="${filter.id}" data-slider-handle="triangle" /> <span th:text="${filter.getMetaData('max-label')}">€
+							10</span>
+					</label>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="product-list">
+		<div th:each="product,iterationStatus  : ${products}" class="product-list-item" th:id="${product.id}">
+
+			<div class="product-image-wrapper">
+				<span class="helper" /><img th:src="${product.imageUrl}" />
+			</div>
+
+			<div class="product-content">
+				<div class="product-name-wrap">
+					<div class="product-name p2">
+						<strong itemprop="name" style="text-align: center; font-size: 15px; font-weight: 700" th:text="${product.name}">α7
+							II E-mount Camera with Full Frame Sensor</strong>
+					</div>
+					<div class="product-price">
+						<strong th:text="${product.price}"> $2,299.00 </strong> <span class="price-disclaimer">(AUD inc. GST)</span>
+					</div>
+					<div class="product-model" th:text="${product.carrier}">ILCE-7M2 BODY / KIT</div>
+				</div>
+
+				<div class="product-rating"></div>
+				<div class="product-meta-wrapper">
+					<ul class="product-meta">
+						<li><span>Full-frame camera with 5-axis image stabilisation</span></li>
+						<li><span>Fast and effective, enhanced Fast Hybrid AF</span></li>
+						<li><span>24.3 MP 35mm full-frame Exmor™ CMOS sensor</span></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

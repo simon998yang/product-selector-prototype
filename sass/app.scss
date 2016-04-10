@@ -1,0 +1,89 @@
+@import "./bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+
+.filter-button-container {
+	@extend .container;
+	margin-top: 1.25em;
+	margin-bottom: 1.5em;
+}
+
+.product-count-wrap {
+	@extend .pull-left;
+	margin: 6px 10px 0  15px;
+}
+
+.filter-button {
+	@extend .col-sm-2;
+	@extend .btn;	 
+	border-radius: 0;
+	background: #f25529;
+}
+
+.filter-options {
+	@extend .container-fluid;
+	background: #e4e7eb;	
+}
+
+.product-list {
+	@extend .container;
+}
+
+.product-list-item {
+	@extend .col-sm-4;
+	margin: 3.125em 0 0;
+}
+
+.product-image-wrapper {
+	height: 350px; 
+	margin-bottom: 10px;
+}
+
+.product-image-wrapper img {	
+	max-width: 100%;
+	vertical-align: bottom;
+}
+
+.helper {
+    display: inline-block;
+    height: 100%;
+    vertical-align: bottom;
+}
+
+.product-content {
+	color: #2f353d;
+}
+
+.product-name-wrap {
+	text-align: center; 
+	height: 40px;
+}
+
+.product-content .product-model ,.product-price{
+	color: #83838f;
+	margin-bottom: 0;
+}
+
+.product-content .product-rating {
+	color: #83838f;
+	margin: 1em 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.product-meta {
+	color: #83838f;
+	list-style-type: square;	
+	min-height: 70px;
+	overflow-y: hidden;
+	padding: 0 0 0 1em;	
+}
+
+.product-meta-wrapper {	 
+	height: 114px; 
+	margin: 0 0 1em;	
+}
+
+.price-disclaimer {
+	font-weight:100;
+	font-size:0.7em;
+}

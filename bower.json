@@ -1,0 +1,26 @@
+{
+  "name": "to-include-bootstrap-sass",
+  "description": "to include bootstrap sass",
+  "main": "assets/javascripts/bootstrap.js",
+  "authors": [
+    "Simon Yang"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "bootstrap",
+    "sass",
+    "css"
+  ],
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "seiyria-bootstrap-slider": "^7.0.1"
+  }
+}
