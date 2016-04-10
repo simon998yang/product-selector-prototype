@@ -51,10 +51,15 @@ public class WebUtil {
 
 	public String saveConfig(String config) {
 		String file = FileToolBox.findInClasspath("org/simon/product/advisor/product-advisor.xml");
-		try (PrintWriter out = new PrintWriter(file)) {
+		PrintWriter out = null;
+		try {
+			out = new PrintWriter(file);
 			out.print(config);
 		} catch (FileNotFoundException e) {
 			return "Cannot save file! " + e.getMessage();
+		} finally {
+			if (out != null)
+				out.close();
 		}
 		return "Saved successfully!";
 	}
