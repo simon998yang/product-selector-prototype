@@ -1,9 +1,14 @@
 package org.simon.web;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Scanner;
 
 import org.simon.product.Product;
+import org.simon.util.FileToolBox;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Service;
 
@@ -23,5 +28,34 @@ public class WebUtil {
 			s += ((Product) it.next()).getId() + ",";
 		}
 		return s;
+	}
+
+	public String loadConfigFileAsString() {
+		Scanner scanner = null;
+		try {
+			String file = FileToolBox.findInClasspath("org/simon/product/advisor/product-advisor.xml");
+			scanner = new Scanner(new File(file));
+			String text = scanner.useDelimiter("\\A").next();
+			return text;
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				scanner.close();
+			} catch (Exception ex) {
+			}
+		}
+		return "";
+	}
+
+	public String saveConfig(String config) {
+		String file = FileToolBox.findInClasspath("org/simon/product/advisor/product-advisor.xml");
+		try (PrintWriter out = new PrintWriter(file)) {
+			out.print(config);
+		} catch (FileNotFoundException e) {
+			return "Cannot save file! " + e.getMessage();
+		}
+		return "Saved successfully!";
 	}
 }

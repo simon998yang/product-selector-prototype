@@ -34,6 +34,22 @@ public class ProductAdvisorController {
 	}
 
 	/**
+	 * URL for editing advisor configuration
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/edit")
+	String edit() {
+		return "editconfig";
+	}
+
+	@RequestMapping("/saveConfig")
+	@ResponseBody
+	String saveConfig(@RequestParam(value = "config", required = true) String config) {
+		return this.webUtil.saveConfig(config);
+	}
+
+	/**
 	 * URL for reload configuration xml
 	 * 
 	 * @return
@@ -46,7 +62,7 @@ public class ProductAdvisorController {
 		} catch (Exception e) {
 			return e.getMessage();
 		}
-		return "reloaded successfully!";
+		return "Reloaded successfully!";
 	}
 
 	/**
@@ -94,5 +110,10 @@ public class ProductAdvisorController {
 	@ModelAttribute("webUtil")
 	public WebUtil webUtil() {
 		return this.webUtil;
+	}
+
+	@ModelAttribute("config")
+	public String configFile() {
+		return this.webUtil.loadConfigFileAsString();
 	}
 }

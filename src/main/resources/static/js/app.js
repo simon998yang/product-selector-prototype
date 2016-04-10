@@ -2,7 +2,7 @@ $(document).ready(function() {
 
 	$(".range").slider({});
 	$(".range").on('slideStop', function() {
-		console.log(this.value);
+
 		var sliderSelf = this;
 		$.ajax({
 			url : "rangeFilter",

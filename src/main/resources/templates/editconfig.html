@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Edit Configuration</title>
+<meta charset="utf-8" />
+<style>
+html, body {
+	height: 100%;
+}
+
+textarea {
+	height: 90%;
+	width: 100%;
+}
+</style>
+
+<script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.1/jquery.min.js" />
+
+<script>
+	$(document).ready(function() {
+		$("#save").click(function() {
+			$.ajax({
+				url : "saveConfig",
+				type : "post",
+				data : {
+					config : $("#config").val()
+				},
+				success : function(response) {
+					$("#status").text(response);
+				},
+				error : function(xhr) {
+					$("#status").text(xhr);
+				}
+			});
+		});
+
+		$("#reload").click(function() {
+			$.ajax({
+				url : "reload",
+				type : "get",
+				data : {},
+				success : function(response) {
+					$("#status").text(response);
+				},
+				error : function(xhr) {
+					$("#status").text(xhr);
+				}
+			});
+		});
+	});
+</script>
+
+</head>
+<body>
+	<textarea id="config" th:text="${config}" />
+	<button id="save">Save</button>
+	<button id="reload">Reload</button>
+	<div id="status"></div>
+</body>
+</html>
+
